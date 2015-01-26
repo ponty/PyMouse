@@ -64,29 +64,29 @@ def expect_pos(pos, size):
 class Test(TestCase):
     def test_size(self):
         for size in screen_sizes:
-            with Display(visible=VISIBLE, size=size):
-                mouse = PyMouse()
+            with Display(visible=VISIBLE, size=size) as d:
+                mouse = PyMouse(display=d.new_display_var)
                 eq_(size, mouse.screen_size())
 
     def test_move(self):
         for size in screen_sizes:
-            with Display(visible=VISIBLE, size=size):
-                mouse = PyMouse()
+            with Display(visible=VISIBLE, size=size) as d:
+                mouse = PyMouse(display=d.new_display_var)
                 for p in positions:
                     mouse.move(*p)
                     eq_(expect_pos(p, size), mouse.position())
 
-    def test_event(self):
-        for size in screen_sizes:
-            with Display(visible=VISIBLE, size=size):
-                time.sleep(3)  # TODO: how long should we wait?
-                mouse = PyMouse()
-                event = Event()
-                event.start()
-                for p in positions:
-                    event.pos = None
-                    mouse.move(*p)
-                    time.sleep(0.1)  # TODO: how long should we wait?
-                    print 'check ', expect_pos(p, size), '=', event.pos
-                    eq_(expect_pos(p, size), event.pos)
-                event.stop()                
+#     def test_event(self):
+#         for size in screen_sizes:
+#             with Display(visible=VISIBLE, size=size) as d:
+#                 time.sleep(3)  # TODO: how long should we wait?
+#                 mouse = PyMouse(display=d.new_display_var)
+#                 event = Event()
+#                 event.start()
+#                 for p in positions:
+#                     event.pos = None
+#                     mouse.move(*p)
+#                     time.sleep(0.1)  # TODO: how long should we wait?
+#                     print 'check ', expect_pos(p, size), '=', event.pos
+#                     eq_(expect_pos(p, size), event.pos)
+#                 event.stop()                
