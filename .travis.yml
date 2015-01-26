@@ -8,4 +8,5 @@ install:
  - pip install http://downloads.sourceforge.net/project/python-xlib/python-xlib/0.14/python-xlib-0.14.tar.gz
 
 script:
+ - xauth add :0 . `mcookie` 
  - nosetests -v tests/test_unix.py
