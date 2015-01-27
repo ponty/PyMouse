@@ -65,12 +65,14 @@ class Test(TestCase):
     def test_size(self):
         for size in screen_sizes:
             with Display(visible=VISIBLE, size=size) as d:
+                time.sleep(0.5)
                 mouse = PyMouse(display=d.new_display_var)
                 eq_(size, mouse.screen_size())
 
     def test_move(self):
         for size in screen_sizes:
             with Display(visible=VISIBLE, size=size) as d:
+                time.sleep(0.5)
                 mouse = PyMouse(display=d.new_display_var)
                 for p in positions:
                     mouse.move(*p)
