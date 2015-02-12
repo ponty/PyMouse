@@ -1,0 +1,4 @@
+nose
+coverage
+pyvirtualdisplay
+http://downloads.sourceforge.net/project/python-xlib/python-xlib/0.14/python-xlib-0.14.tar.gz
